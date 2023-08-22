@@ -6,30 +6,16 @@ CunnyDetect is a state-of-the-art image classifier running entirely in the brows
 - Lightweight. Can run in the browser.
 - Help convince your peers that your waifu is, in fact, not a loli.
 
-<style>
-  .image-container {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-  }
-  .image-container img {
-    display: block;
-    margin: 0 auto;
-  }
-  .image-text {
-    font-size: 20px;
-    text-align: center;
-  }
-</style>
-
 <br>
-<div class="image-container">
-    <img src="images_to_predict/aris.png" alt="example of a cunny image." width="162" height="226">
-    <p class="image-text">prediction: cunny 😭</p>
-    <img src="images_to_predict/kafka.jpg" alt="example of a non-cunny image." width="162" height="226">
-    <p class="image-text">prediction: not_cunny 😇</p>
-</div>
-</br>
+<p align="center">
+    <img src="images_to_predict\aris.png" alt="example of a cunny image." width="162" height="226"></img>
+</p>
+<p align="center"> prediction: cunny 😭 </p>
+<p align="center">
+    <img src="images_to_predict\kafka.jpg" alt="example of a non-cunny image." width="162" height="226"></img>
+</p>
+<p align="center"> prediction: not_cunny 😇 </p>
+<br>
 
 ## Model
 
