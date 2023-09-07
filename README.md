@@ -1,57 +1,47 @@
-# CunnyDetect
+# Svelte + Vite
 
-CunnyDetect is a state-of-the-art image classifier running entirely in the browser that aims to solve the age-old conundrum: *"Is this thing a loli?"*
+This template should help get you started developing with Svelte in Vite.
 
-- Can detect the presence of loli imagery with sufficient accuracy if the weather is good. (Lower accuracy if it's raining outside or if you look at it funny.)
-- Lightweight. Can run in the browser.
-- Help convince your peers that your waifu is, in fact, not a loli.
+## Recommended IDE Setup
 
-<br>
-<p align="center">
-    <img src="images_to_predict\aris.png" alt="example of a cunny image." width="162" height="226"></img>
-</p>
-<p align="center"> prediction: cunny 😭 </p>
-<p align="center">
-    <img src="images_to_predict\kafka.jpg" alt="example of a non-cunny image." width="162" height="226"></img>
-</p>
-<p align="center"> prediction: not_cunny 😇 </p>
-<br>
+[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
 
-## Model
+## Need an official Svelte framework?
 
-| Model | Number of images | Validation accuracy |
-| :---: | :--------------: | :----------------:  |
-| mobilenetv3_finetuned(3M) | 26446 | 86.7 |
+Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
 
-## Requirements
+## Technical considerations
 
-`TensorFlow 2.10.0` is required if you want GPU support on Windows. Also cudatoolkit, cuda-nvcc, and cudnn.
+**Why use this over SvelteKit?**
 
-If not training, CPU should be enough for prediction.
+- It brings its own routing solution which might not be preferable for some users.
+- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
 
+This template contains as little as possible to get started with Vite + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
 
-## Usage
+Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
 
-**Training**
-Place images in `training_data`
+**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
+
+Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
+
+**Why include `.vscode/extensions.json`?**
+
+Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
+
+**Why enable `checkJs` in the JS template?**
+
+It is likely that most cases of changing variable types in runtime are likely to be accidental, rather than deliberate. This provides advanced typechecking out of the box. Should you like to take advantage of the dynamically-typed nature of JavaScript, it is trivial to change the configuration.
+
+**Why is HMR not preserving my local component state?**
+
+HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/sveltejs/svelte-hmr/tree/master/packages/svelte-hmr#preservation-of-local-state).
+
+If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
+
+```js
+// store.js
+// An extremely simple external store
+import { writable } from 'svelte/store'
+export default writable(0)
 ```
-python model.py
-```
-**Predicting**
-Place images in `images_to_predict`
-```
-python predict.py
-```
-**Converting to tensorflowjs model**
-```
-tensorflowjs_converter --input_format=keras --output_format=tfjs_graph_model models/mobilenetv3_finetuned(3M).h5 client/js_model
-```
-
-## Training data
-
-Images are sourced from gelbooru, of which many are too cursed to redistribute.
-
-| Class | Example tags |
-| :---- | :----------- |
-| cunny | `1girl` `solo` `loli` `flat-chest` `female_focus` `highres`|
-| not_cunny | `1girl` `1boy` `solo` `breasts` `mature_female` `female_focus` `male_focus` `highres` |
