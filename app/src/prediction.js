@@ -1,7 +1,6 @@
-async function predict(tensor) {
-    if (!model) {
-        return;
-    }
+import * as tf from '@tensorflow/tfjs';
+
+async function predict(tensor, model) {
     const prediction = model.predict(tensor);
     const prediction_arr = prediction.arraySync();
     
@@ -16,3 +15,5 @@ async function interpret(predictionArray) {
         return "This image contains cunny. 😭";
     }
 }
+
+export {predict, interpret}

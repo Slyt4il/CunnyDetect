@@ -19,8 +19,8 @@ CunnyDetect is a state-of-the-art image classifier running entirely in the brows
 
 ## Model
 
-| Model | Number of images | Vaidation accuracy |
-| :---: | :--------------: | :----------------: |
+| Model | Number of images | Validation accuracy |
+| :---: | :--------------: | :----------------:  |
 | mobilenetv3_finetuned(3M) | 26446 | 86.7 |
 
 ## Requirements

@@ -1,4 +1,6 @@
-async function preprocessImage(img) {
+import * as tf from '@tensorflow/tfjs';
+
+async function preprocessImage(imgsrc) {
     return new Promise((resolve) => {
         const image = new Image();
         image.onload = async () => {
@@ -6,6 +8,8 @@ async function preprocessImage(img) {
             resolve(tensor.expandDims(0).toFloat());
             tensor.dispose();
         };
-        image.src = img.src;
+        image.src = imgsrc;
     });
 }
+
+export {preprocessImage}
